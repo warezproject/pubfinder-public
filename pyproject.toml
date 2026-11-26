@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pubfinder"
+version = "0.2.0"
+description = "논문명·학술대회명·저자명으로 학술대회 발표 정보를 두 번 따로 조사하고 근거를 다시 열어 대조한다"
+readme = "README.md"
+authors = [{ name = "Seongjin Bae", email = "sjbae7@etri.re.kr" }]
+requires-python = ">=3.11"
+dependencies = [
+    "pypdf>=4",
+]
+
+[project.scripts]
+pubfinder = "pubfinder.cli:main"
+
+[project.gui-scripts]
+pubfinder-app = "pubfinder.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "I"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pubfinder", "tests"]
